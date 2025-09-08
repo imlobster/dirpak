@@ -54,6 +54,7 @@ namespace packpack {
 			if(!std::filesystem::is_regular_file(entry.path())) continue;
 
 			auto ext=entry.path().extension().string();
+			if(ext==".dirpak") continue;
 			if(ignored_extensions.find(ext)!=ignored_extensions.end()) {
 				std::cout<<"dirpak: bad file "<<entry.path().string()<<std::endl;
 				continue;
