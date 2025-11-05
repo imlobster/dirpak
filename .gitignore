@@ -1,6 +1,12 @@
-*.vim
-*.swo
-*.swp
+# cmake
+/build/
+
+# backups
+*.bak
 *.old
-quickbuild.*
-debug/
+
+# build shell script
+/quickbuild.*
+
+# binary files
+/bin/
