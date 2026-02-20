@@ -7,11 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 set(SOURCES
-	src/main.cc
-	src/pack.cc
+	dirpak.cc
 )
 
 add_executable(dirpak ${SOURCES})
+
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 	target_compile_options(dirpak PRIVATE -O3 -Wall -Wextra -Werror=return-type -fno-rtti -fno-exceptions)
 endif()

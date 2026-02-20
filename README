@@ -1,0 +1,17 @@
+
+tool:
+    share codebases with just a
+    tiny and intuitive text file
+
+    imlobster (c) 2026
+    MIT License
+
+instalation:
+    ./build.sh
+
+usage:
+    dirpak f1.txt f2.md src/
+    dirpak src/ doc/
+    dirpak src/ > dump
+    dirpak doc | copy
+
