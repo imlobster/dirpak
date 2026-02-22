@@ -1,9 +1,2 @@
-# cmake
-/build/
-
-# backups
-*.bak
-*.old
-
-# binary files
-/bin/
+# binary file
+/dirpak
