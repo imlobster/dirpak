@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 #define LOG "dirpak: "
-#define MARK "dump w/ dirpak"
 
 int pack(int iec, char **iev) {
 	std::vector<std::filesystem::path> paths;
@@ -32,22 +31,29 @@ int pack(int iec, char **iev) {
 		return 1;
 	}
 
-	fprintf(stdout, MARK "\n");
-
-	for(const auto& path : paths) {
-		std::ifstream efd(path);
+	for(size_t i = 0; i < paths.size(); ++i) {
+		std::ifstream efd(paths[i]);
 
 		if(!efd) {
-			fprintf(stderr, LOG "unable to open file for reading: '%s'\n", path.c_str());
-			return 1;
+			fprintf(stderr, LOG "unable to open file for reading: '%s'\n", paths[i].c_str());
+			continue;
 		}
 
-		fprintf(stdout, "\n%s\n", path.c_str());
+		fputs(paths[i].c_str(), stdout);
 
 		std::string ln;
-		while(std::getline(efd, ln)) { fprintf(stdout, "~ %s\n", ln.c_str()); }
+		while(std::getline(efd, ln)) {
+			fputs("\n~ ", stdout);
+			fputs(ln.c_str(), stdout);
+		}
 
 		efd.close();
+
+		if(i + 1 < paths.size()) {
+			fputs("\n\n", stdout);
+		} else {
+			fputs("\n", stdout);
+		}
 	}
 
 	return 0;
