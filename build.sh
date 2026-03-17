@@ -14,10 +14,16 @@ fi
 target="dirpak.cc"
 output="dirpak"
 
+if [ -z "$LDFLAGS" ]; then
+	if command -v "lld" >/dev/null 2>&1; then
+		LDFLAGS="-fuse-ld=lld"
+	fi
+fi
+
 PS4=''
 { set -x; } 2>/dev/null
 
-"$CXX" "$target" "-o" "$output" "-std=c++17" "-O3" "-Wall" "-Wextra" "-Werror=return-type" "-fno-rtti" "-fno-exceptions" "-static"
+"$CXX" $LDFLAGS "$target" "-o" "$output" "-std=c++17" "-O3" "-Wall" "-Wextra" "-Werror=return-type" "-fno-rtti" "-fno-exceptions" "-static"
 
 { set +x; } 2>/dev/null
 
